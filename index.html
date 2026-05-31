@@ -1,0 +1,117 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorteo Fin de Curso</title>
+
+<style>
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#ffde59,#ff914d,#ff66c4);
+    color:white;
+    text-align:center;
+}
+
+.contenedor{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.2);
+    max-width:700px;
+}
+
+h1{
+    font-size:3em;
+    margin-bottom:10px;
+}
+
+.mensaje{
+    font-size:1.4em;
+    margin-bottom:25px;
+}
+
+#contador{
+    font-size:2em;
+    font-weight:bold;
+}
+
+#numero{
+    font-size:5em;
+    font-weight:bold;
+    color:#fff700;
+    text-shadow:0 0 15px rgba(255,255,255,0.8);
+    display:none;
+}
+
+.telefono{
+    margin-top:30px;
+    font-size:1.2em;
+}
+
+a{
+    color:white;
+    font-weight:bold;
+}
+
+.confeti{
+    font-size:2em;
+}
+</style>
+</head>
+<body>
+
+<div class="contenedor">
+    <div class="confeti">🎉 🎓 🎉</div>
+
+    <h1>Sorteo Fin de Curso</h1>
+
+    <p class="mensaje">
+        ¡Gracias por la ayuda!
+    </p>
+
+    <div id="contador"></div>
+    <div id="numero">5202</div>
+
+    <div class="telefono">
+        Contacto:
+        <a href="tel:+34620700499">+34 620 700 499</a>
+    </div>
+</div>
+
+<script>
+const fechaSorteo = new Date("2026-07-12T10:00:00");
+
+function actualizar() {
+    const ahora = new Date();
+    const diferencia = fechaSorteo - ahora;
+
+    if (diferencia <= 0) {
+        document.getElementById("contador").style.display = "none";
+        document.getElementById("numero").style.display = "block";
+        return;
+    }
+
+    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+    const segundos = Math.floor((diferencia / 1000) % 60);
+
+    document.getElementById("contador").innerHTML =
+        `⏳ Faltan ${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos`;
+}
+
+setInterval(actualizar, 1000);
+actualizar();
+</script>
+
+</body>
+</html>
+```
